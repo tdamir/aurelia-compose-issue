@@ -1,0 +1,15 @@
+<template>
+  <div>Activate ${state.activateCalls}</div>
+  <div>Bind ${state.bindCalls}</div>
+  <ol>
+    <!-- this calls activate more times than bind -->
+    <li repeat.for="$item of items">
+      <compose containerless view-model="item" model.bind="{text: $item}"></compose>
+    </li>
+    <!-- this produces expected result -->
+    <!-- <li repeat.for="$item of items">
+      <compose containerless view-model="item2" model.bind="$item"></compose>
+    </li> -->
+    <!-- difference is only in model.bind -->
+  </ol>
+</template>
