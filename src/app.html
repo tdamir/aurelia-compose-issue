@@ -1,10 +1,14 @@
 <template>
+  <div>Number of items
+    <input type="number" value.bind="itemsCount" />
+    <button click.trigger="recreate()">Recreate list</button>
+  </div>
   <div>Activate ${state.activateCalls}</div>
   <div>Bind ${state.bindCalls}</div>
   <ol>
     <!-- this calls activate more times than bind -->
     <li repeat.for="$item of items">
-      <compose containerless view-model="item" model.bind="{text: $item}"></compose>
+      <compose containerless view-model="item" model.bind="{text: $item.text}"></compose>
     </li>
     <!-- this produces expected result -->
     <!-- <li repeat.for="$item of items">

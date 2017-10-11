@@ -14,6 +14,7 @@ export class Item {
   activate(model: { text: string }) {
     this.text = model.text;
     this.state.activateCalls++;
+    this.state.activate.push(model.text);
     // console.log(`${this.text}`);
   }
 

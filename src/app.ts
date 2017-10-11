@@ -3,7 +3,8 @@ import { State } from "./state";
 
 @autoinject()
 export class App {
-  items: Array<string>;
+  items: Array<ItemModel>;
+  itemsCount: number = 100;
 
   constructor(public state: State) {
   }
@@ -12,13 +13,26 @@ export class App {
     this.items = this.getData();
   }
 
-  getData(): Array<string> {
-    let items: Array<string> = [];
-    for (let i = 0; i < 1000; i++) {
-      items.push(i.toLocaleString());
+  getData(): Array<ItemModel> {
+    let items: Array<ItemModel> = [];
+    for (let i = 0; i < this.itemsCount; i++) {
+      items.push(new ItemModel(i.toLocaleString()));
     }
     return items;
   }
 
+  recreate() {
+    this.state.activateCalls = 0;
+    this.state.bindCalls = 0;
+    this.items = null;
+    this.items = this.getData();
+  }
+}
+
+export class ItemModel {
+
+  constructor(public text: string) {
+   
+  }
 }
 
